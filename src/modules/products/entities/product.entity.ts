@@ -23,10 +23,10 @@ export class Product {
   @Column()
   stock: number;
 
-  @Column()
+  @Column( { default: true })
   isActive: boolean;
 
-  @Column()
+  @Column( { default: false })
   isDeleted: boolean;
 
   @Column()

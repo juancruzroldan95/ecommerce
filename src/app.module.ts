@@ -1,18 +1,19 @@
-import { Module } from "@nestjs/common";
-import { UsersModule } from "./modules/users/users.module";
-import { AuthModule } from "./modules/auth/auth.module";
-import { OrdersModule } from "./modules/orders/orders.module";
-import { ProductsModule } from "./modules/products/products.module";
-import { databaseConfig } from "./config/database.config";
-import { ProductsModule } from "./modules/products/products.module";
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+
+import { DatabaseModule } from './modules/database/database.module';
+import { UsersModule } from './modules/users/users.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env.local',
+    }),
+    DatabaseModule,
     UsersModule,
-    AuthModule,
-    OrdersModule,
     ProductsModule,
-    databaseConfig,
   ],
   controllers: [],
   providers: [],
